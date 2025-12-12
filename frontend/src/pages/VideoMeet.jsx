@@ -14,8 +14,9 @@ import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 
 import styles from "../styles/videoComponent.module.css";
+import server from "../environmentt";
 
-const server_url = "http://localhost:8000";
+const server_url = server;
 var connections = {};
 
 const peerConfigConnections = {
@@ -228,6 +229,7 @@ export default function VideoMeetComponent() {
 
   const connectToSocketServer = () => {
     socketRef.current = io.connect(server_url, { transports: ["websocket", "polling"] });
+
     socketRef.current.on("signal", gotMessageFromServer);
 
     socketRef.current.on("connect", () => {
