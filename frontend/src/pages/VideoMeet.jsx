@@ -14,7 +14,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 
 import styles from "../styles/videoComponent.module.css";
-import server from "../environmentt";
+import server from "../environment";
 
 const server_url = server;
 var connections = {};
