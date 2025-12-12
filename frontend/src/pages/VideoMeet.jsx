@@ -461,18 +461,19 @@ export default function VideoMeetComponent() {
           <video className={styles.meetUserVideo} ref={mainVideoRef} autoPlay muted></video>
 
           <div className={styles.conferenceView}>
-            {videos.map((v) => (
-              <div key={v.socketId} className={styles.conferenceView}>
-                <video
-                  autoPlay
-                  playsInline
-                  muted={v.socketId === socketIDRef.current}
-                  ref={(el) => {
-                    if (el && v.stream && el.srcObject !== v.stream) el.srcObject = v.stream;
-                  }}
-                />
-              </div>
-            ))}
+            {videos
+              .filter((v) => v.socketId !== socketIDRef.current)
+              .map((v) => (
+                <div key={v.socketId} className={styles.conferenceView}>
+                  <video
+                    autoPlay
+                    playsInline
+                    ref={(el) => {
+                      if (el && v.stream && el.srcObject !== v.stream) el.srcObject = v.stream;
+                    }}
+                  />
+                </div>
+              ))}
           </div>
         </div>
       )}
